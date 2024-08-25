@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Elite Agency",
+    "slug": "Elite-Agency",
+    "version": "1.0.0",
+    "orientation": "portrait ",
+    "icon": "./assets/images/appLogo.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#211F20"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/splash.jpg",
+        "backgroundColor": "#211F20"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/appIcon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "@config-plugins/react-native-blob-util",
+      "@config-plugins/react-native-pdf"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
