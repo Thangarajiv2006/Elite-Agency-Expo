@@ -73,7 +73,7 @@ export default function Index() {
               <Text
                 style={{
                   color: color.onSurface,
-                  fontFamily: "Nunito",
+                  fontFamily: "Poppins-Regular",
                   fontWeight: 500,
                   fontSize: 25,
                   textAlign: "center",

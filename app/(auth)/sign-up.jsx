@@ -90,7 +90,7 @@ const Signup = () => {
             <Text
               style={{
                 color: color.onSurface,
-                fontFamily: "Nunito",
+                fontFamily: "Poppins-Regular",
                 fontSize: 15,
                 fontWeight: 900,
               }}
@@ -112,7 +112,7 @@ const Signup = () => {
               <Text
                 style={{
                   marginTop: 10,
-                  fontFamily: "Nunito",
+                  fontFamily: "Poppins-Regular",
                   fontWeight: 700,
                   color: color.onSurface,
                   fontSize: 10,
@@ -208,7 +208,7 @@ const Signup = () => {
               <Text
                 style={{
                   marginTop: 20,
-                  fontFamily: "Nunito",
+                  fontFamily: "Poppins-Regular",
                   fontWeight: 700,
                   color: color.onSurface,
                   fontSize: 10,

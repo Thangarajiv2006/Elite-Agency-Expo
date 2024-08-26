@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Elite Agency",
-    "slug": "Elite-Agency",
+    "slug": "elite-agency",
     "version": "1.0.0",
     "orientation": "portrait ",
     "icon": "./assets/images/appLogo.png",
@@ -47,8 +47,15 @@
         "origin": false
       },
       "eas": {
-        "projectId": "b6bb9450-b8fc-4a37-84fb-f36e478d3d14"
+        "projectId": "dc23be1e-6866-4dd7-a1c1-82d66de57233"
       }
+    },
+    "owner": "thangarajiv",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/dc23be1e-6866-4dd7-a1c1-82d66de57233"
     }
   }
 }

@@ -42,7 +42,7 @@ const Login = () => {
           <View style={style.title}>
             <Text
               style={{
-                fontFamily: "Nunito",
+                fontFamily: "Poppins-Regular",
                 color: color.onSurface,
                 fontSize: 30,
                 fontWeight: 900,

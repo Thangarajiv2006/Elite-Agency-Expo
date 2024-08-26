@@ -1,10 +1,13 @@
 import { router } from "expo-router";
 import createAxiosInstance from "../helpers/axios";
 import { orderConstant } from "./constants";
-import { downloadFromUrl, downloadFromAPI } from "../helpers/download";
+import { downloadFromUrl, downloadFromAPI, save } from "../helpers/download";
 import { backendUrls } from "../constants/urlConfig";
+import { billLayout } from "../others/inovoicePdf";
+import { printToFileAsync } from "expo-print";
+import { Alert } from "react-native";
 
-export const createOrder = (data) => {
+export const createOrder = (data, agencyData) => {
   return async (dispatch) => {
     dispatch({
       type: orderConstant.CREATE_ORDER_REQUEST,
@@ -20,16 +23,32 @@ export const createOrder = (data) => {
           },
         });
       } else if (res.status === 201) {
-        console.log(res.data);
-        downloadFromUrl(
-          backendUrls.public + res.data.pdf + ".pdf",
-          `${res.data.pdf}.pdf`
-        );
         dispatch({
           type: orderConstant.CREATE_ORDER_SUCCESS,
           payload: res.data,
         });
-        router.push(`/orders`);
+
+        console.log(res.data);
+
+        const html = billLayout(
+          agencyData,
+          res.data.shop,
+          res.data.orderedProducts,
+          res.data.invoiceNo
+        );
+        console.log("hello");
+        const file = await printToFileAsync({
+          html: html,
+          base64: false,
+        });
+        await save(
+          file.uri,
+          `${res.data.shop.shopName}${Date.now()}`,
+          "application/pdf"
+        ).then(() => {
+          router.push(`/orders`);
+          Alert.alert("Message", "PDF Created Successfully!");
+        });
       }
     } catch (error) {
       console.log(error);

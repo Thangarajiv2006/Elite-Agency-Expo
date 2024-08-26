@@ -57,7 +57,7 @@ const EditAndAdd = ({
                 fontWeight: 700,
                 color: color.onPrimary,
                 fontSize: 30,
-                fontFamily: "Nunito",
+                fontFamily: "Poppins-Regular",
                 letterSpacing: 1,
               }}
             >
@@ -91,7 +91,7 @@ const EditAndAdd = ({
                 <Text
                   style={{
                     marginTop: 10,
-                    fontFamily: "Nunito",
+                    fontFamily: "Poppins-Regular",
                     fontWeight: 700,
                     color: color.onSurface,
                     fontSize: 10,
@@ -159,7 +159,7 @@ const EditAndAdd = ({
                 <Text
                   style={{
                     marginTop: 20,
-                    fontFamily: "Nunito",
+                    fontFamily: "Poppins-Regular",
                     fontWeight: 700,
                     color: color.onSurface,
                     fontSize: 10,

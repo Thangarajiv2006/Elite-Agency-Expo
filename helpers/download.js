@@ -28,7 +28,7 @@ export const downloadFromAPI = async (url, fileName) => {
   return uri;
 };
 
-const save = async (uri, filename, mimetype) => {
+export const save = async (uri, filename, mimetype) => {
   if (Platform.OS === "android") {
     const permissions =
       await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
@@ -45,7 +45,6 @@ const save = async (uri, filename, mimetype) => {
           await FileSystem.writeAsStringAsync(uri, base64, {
             encoding: FileSystem.EncodingType.Base64,
           });
-          console.log(permissions.directoryUri);
           return permissions.directoryUri;
         })
         .catch((e) => console.log(e));

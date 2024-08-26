@@ -80,7 +80,7 @@ const AddEditProduct = ({
                 fontWeight: 700,
                 color: color.onPrimary,
                 fontSize: 30,
-                fontFamily: "Nunito",
+                fontFamily: "Poppins-Regular",
                 letterSpacing: 1,
               }}
             >

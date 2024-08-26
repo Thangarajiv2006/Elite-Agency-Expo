@@ -3,41 +3,26 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   Alert,
   FlatList,
   RefreshControl,
-  Platform,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../components/common/Header";
 import { useDispatch, useSelector } from "react-redux";
 import CircleButton from "../../components/common/CircleButton";
-import EditAndAdd from "../../components/Shops/EditAndAdd";
 import icons from "../../constants/icons";
 import SearchInput from "../../components/common/SearchButton";
 import { color } from "../../constants/colors";
-import {
-  createShop,
-  fetchShops,
-  refreshShops,
-} from "../../actions/shop.action";
 import { StatusBar } from "expo-status-bar";
 import Loader from "../../components/common/Loader";
-import ShopsRender from "../../components/Shops/ShopsRender";
 import { useDebounce } from "use-debounce";
 import { router } from "expo-router";
 import { getOrders, refreshOrders } from "../../actions/order.action";
 import RenderOrder from "../../components/Order/RenderOrder";
-import * as Print from "expo-print";
-import * as FileSystem from "expo-file-system";
-import * as Sharing from "expo-sharing";
-import * as MediaLibrary from "expo-media-library";
 
 const selectShop = () => {
   const AgencyData = useSelector((state) => state.Agency);
-  const shopData = useSelector((state) => state.shop);
-  const productData = useSelector((state) => state.product);
   const orderData = useSelector((state) => state.order);
 
   const dispatch = useDispatch();
@@ -50,6 +35,7 @@ const selectShop = () => {
   const [filterdData, setFilteredData] = useState(orderData.orders ?? []);
 
   useEffect(() => {
+    console.log(orderData);
     if (AgencyData.errorCode) {
       Alert.alert("Error", AgencyData.errorMessage);
     }

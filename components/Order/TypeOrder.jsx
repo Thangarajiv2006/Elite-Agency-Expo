@@ -17,6 +17,8 @@ const TypeOrder = ({
   AgencyId,
 }) => {
   const orderData = useSelector((state) => state.order);
+  const AgencyData = useSelector((state) => state.Agency);
+
   const dispatch = useDispatch();
 
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -76,7 +78,7 @@ const TypeOrder = ({
       orderedProducts: product,
       shop: shopId,
     };
-    dispatch(createOrder(formData));
+    dispatch(createOrder(formData, AgencyData.agencyDetails));
   };
 
   useEffect(() => {

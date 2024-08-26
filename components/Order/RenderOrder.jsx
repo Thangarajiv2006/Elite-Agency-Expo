@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import { color } from "../../constants/colors";
 import { TouchableOpacity } from "react-native";
@@ -7,9 +7,16 @@ import { el } from "date-fns/locale";
 import CircleButton from "../common/CircleButton";
 import icons from "../../constants/icons";
 import { backendUrls } from "../../constants/urlConfig";
-import { downloadFromUrl } from "../../helpers/download";
+import { downloadFromUrl, save } from "../../helpers/download";
+
+import { printToFileAsync } from "expo-print";
+import { shareAsync } from "expo-sharing";
+import { useSelector } from "react-redux";
+import { billLayout } from "../../others/inovoicePdf";
 
 const RenderOrder = ({ index, item, onPress }) => {
+  const AgencyData = useSelector((state) => state.Agency);
+
   const date = parseISO(item.createdAt);
   const formattedDate = format(date, "dd-MM-yyyy");
 
@@ -43,6 +50,26 @@ const RenderOrder = ({ index, item, onPress }) => {
     setGrandTotal(grandTotalAmount);
   }, []);
 
+  const handleGenaratePdf = async (
+    agencyDetails,
+    shop,
+    products,
+    invoiceNo
+  ) => {
+    const html = billLayout(agencyDetails, shop, products, invoiceNo);
+    const file = await printToFileAsync({
+      html: html,
+      base64: false,
+    });
+    await save(
+      file.uri,
+      `${shop.shopName}${Date.now()}`,
+      "application/pdf"
+    ).then(() => {
+      Alert.alert("Message", "PDF Created Successfully!");
+    });
+  };
+
   return (
     <View
       style={{
@@ -71,17 +98,13 @@ const RenderOrder = ({ index, item, onPress }) => {
         buttonStyle={{
           width: 15,
         }}
-        handlePress={
-          isDownloading
-            ? () => {}
-            : () => {
-                setIsDownloading(true);
-                downloadFromUrl(
-                  backendUrls.public + item.pdf + ".pdf",
-                  `${item.pdf}.pdf`
-                );
-                setIsDownloading(false);
-              }
+        handlePress={() =>
+          handleGenaratePdf(
+            AgencyData.agencyDetails,
+            item.shop,
+            item.orderedProducts,
+            item.invoiceNo
+          )
         }
       />
       <View
