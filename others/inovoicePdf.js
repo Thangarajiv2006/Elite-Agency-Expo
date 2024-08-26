@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 function formatDateToDDMMYYYY(date) {
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() is zero-based
@@ -61,7 +63,13 @@ const numToINCurrency = (amount) => {
   return formattedAmount;
 };
 
-exports.billLayout = (agencyDetails, shopData, productData, invoiceNo) => {
+exports.billLayout = (
+  agencyDetails,
+  shopData,
+  productData,
+  invoiceNo,
+  createdAt
+) => {
   const date = new Date();
 
   const tableRows = tableElement(productData);
@@ -255,7 +263,7 @@ exports.billLayout = (agencyDetails, shopData, productData, invoiceNo) => {
               <p class="head">INVOICE DETAILS</p>
               <div>
                 <p>Invoice No: ${invoiceNo}</p>
-                <p>Invoice Date: ${formatDateToDDMMYYYY(date)}</p>
+                <p>Invoice Date: ${format(createdAt, "dd-MM-yyyy")}</p>
               </div>
             </div>
           </div>

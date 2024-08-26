@@ -54,9 +54,16 @@ const RenderOrder = ({ index, item, onPress }) => {
     agencyDetails,
     shop,
     products,
-    invoiceNo
+    invoiceNo,
+    createdAt
   ) => {
-    const html = billLayout(agencyDetails, shop, products, invoiceNo);
+    const html = billLayout(
+      agencyDetails,
+      shop,
+      products,
+      invoiceNo,
+      createdAt
+    );
     const file = await printToFileAsync({
       html: html,
       base64: false,
@@ -103,7 +110,8 @@ const RenderOrder = ({ index, item, onPress }) => {
             AgencyData.agencyDetails,
             item.shop,
             item.orderedProducts,
-            item.invoiceNo
+            item.invoiceNo,
+            item.createdAt
           )
         }
       />

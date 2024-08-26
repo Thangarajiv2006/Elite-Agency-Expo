@@ -32,7 +32,8 @@ export const createOrder = (data, agencyData) => {
           agencyData,
           res.data.shop,
           res.data.orderedProducts,
-          res.data.invoiceNo
+          res.data.invoiceNo,
+          res.data.createdAt
         );
         const file = await printToFileAsync({
           html: html,
@@ -48,6 +49,7 @@ export const createOrder = (data, agencyData) => {
         });
       }
     } catch (error) {
+      console.log(error);
       dispatch({
         type: orderConstant.CREATE_ORDER_AXIOS_ERROR,
       });
