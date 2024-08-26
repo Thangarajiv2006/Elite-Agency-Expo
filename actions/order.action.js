@@ -21,7 +21,7 @@ export const createOrder = (data) => {
         });
       } else if (res.status === 201) {
         console.log(res.data);
-        const uri = await downloadFromUrl(
+        downloadFromUrl(
           backendUrls.public + res.data.pdf + ".pdf",
           `${res.data.pdf}.pdf`
         );
@@ -29,8 +29,7 @@ export const createOrder = (data) => {
           type: orderConstant.CREATE_ORDER_SUCCESS,
           payload: res.data,
         });
-        console.log(uri);
-        router.push(`/showBill/${uri}`);
+        router.push(`/orders`);
       }
     } catch (error) {
       console.log(error);

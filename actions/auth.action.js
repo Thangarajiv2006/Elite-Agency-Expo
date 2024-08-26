@@ -65,5 +65,6 @@ export const logout = () => {
     await storeData("token", "").then(() => {
       dispatch({ type: authConstant.LOGOUT_SUCCESS });
     });
+    router.replace("/(auth)/sign-in");
   };
 };

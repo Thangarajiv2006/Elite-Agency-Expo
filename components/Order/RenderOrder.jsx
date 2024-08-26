@@ -4,12 +4,18 @@ import { color } from "../../constants/colors";
 import { TouchableOpacity } from "react-native";
 import { format, parseISO, addDays } from "date-fns";
 import { el } from "date-fns/locale";
+import CircleButton from "../common/CircleButton";
+import icons from "../../constants/icons";
+import { backendUrls } from "../../constants/urlConfig";
+import { downloadFromUrl } from "../../helpers/download";
 
 const RenderOrder = ({ index, item, onPress }) => {
   const date = parseISO(item.createdAt);
   const formattedDate = format(date, "dd-MM-yyyy");
 
   const [grandTotal, setGrandTotal] = useState(0);
+
+  const [isDownloading, setIsDownloading] = useState(false);
 
   useEffect(() => {
     let grandTotalAmount = 0;
@@ -38,9 +44,7 @@ const RenderOrder = ({ index, item, onPress }) => {
   }, []);
 
   return (
-    <TouchableOpacity
-      onPress={async () => await onPress()}
-      activeOpacity={0.7}
+    <View
       style={{
         backgroundColor: color.surface,
         width: "100%",
@@ -51,8 +55,35 @@ const RenderOrder = ({ index, item, onPress }) => {
         padding: 13,
         flexDirection: "row",
         justifyContent: "space-between",
+        position: "relative",
       }}
     >
+      <CircleButton
+        icon={icons.download}
+        containerStyle={{
+          position: "absolute",
+          top: 10,
+          right: 10,
+          width: 35,
+          height: 35,
+          opacity: isDownloading ? 0.7 : 1,
+        }}
+        buttonStyle={{
+          width: 15,
+        }}
+        handlePress={
+          isDownloading
+            ? () => {}
+            : () => {
+                setIsDownloading(true);
+                downloadFromUrl(
+                  backendUrls.public + item.pdf + ".pdf",
+                  `${item.pdf}.pdf`
+                );
+                setIsDownloading(false);
+              }
+        }
+      />
       <View
         style={{
           width: 100,
@@ -141,7 +172,7 @@ const RenderOrder = ({ index, item, onPress }) => {
           </Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

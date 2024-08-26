@@ -3,8 +3,12 @@ import React from "react";
 import { color } from "../../constants/colors";
 import icons from "../../constants/icons";
 import SearchInput from "./SearchButton";
+import { useDispatch } from "react-redux";
+import { logout } from "../../actions/auth.action";
 
 const Header = ({ agencyName, backNav, onNav }) => {
+  const dispatch = useDispatch();
+
   return (
     <View
       style={{
@@ -82,7 +86,7 @@ const Header = ({ agencyName, backNav, onNav }) => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              width: 60,
+              width: 90,
             }}
           >
             <TouchableOpacity>
@@ -100,6 +104,18 @@ const Header = ({ agencyName, backNav, onNav }) => {
             <TouchableOpacity>
               <Image
                 source={icons.settings}
+                resizeMode="contain"
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: color.onSurface,
+                  opacity: 0.9,
+                }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => dispatch(logout())}>
+              <Image
+                source={icons.signout}
                 resizeMode="contain"
                 style={{
                   width: 20,

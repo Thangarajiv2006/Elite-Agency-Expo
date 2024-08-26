@@ -100,13 +100,7 @@ const selectShop = () => {
               data={filterdData ?? []}
               keyExtractor={(item) => item._id}
               renderItem={({ item, index }) => (
-                <RenderOrder
-                  index={index}
-                  item={item}
-                  onPress={() => {
-                    router.push(`/showBill/${item.pdf}`);
-                  }}
-                />
+                <RenderOrder index={index} item={item} onPress={() => {}} />
               )}
               ListFooterComponent={() => <Loader loading={isFetching} />}
               onEndReached={

@@ -51,7 +51,6 @@ export default function RootLayout() {
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="order/[getOrder]" />
-        <Stack.Screen name="showBill/[bill]" />
         <Stack.Screen name="order/selectShop" />
       </Stack>
     </Provider>
