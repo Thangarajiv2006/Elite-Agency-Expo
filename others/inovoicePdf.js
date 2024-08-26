@@ -63,7 +63,6 @@ const numToINCurrency = (amount) => {
 
 exports.billLayout = (agencyDetails, shopData, productData, invoiceNo) => {
   const date = new Date();
-  console.log(shopData);
 
   const tableRows = tableElement(productData);
 

@@ -41,10 +41,8 @@ const Signup = () => {
       }
     }
     setLoading(true);
-    const res = await axios
-      .post("/agency/auth/sign-up", agencyDetails)
+    const res = await axios.post("/agency/auth/sign-up", agencyDetails);
 
-      .catch((err) => console.log(err));
     setLoading(false);
     if (res.data.errorCode) {
       Alert.alert(res.data.errorMessage);

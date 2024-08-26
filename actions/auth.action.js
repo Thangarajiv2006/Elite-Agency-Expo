@@ -24,7 +24,6 @@ export const login = (formData) => {
         router.replace("/analytics");
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: authConstant.AUTH_AXIOS_ERROR,
       });
@@ -52,7 +51,6 @@ export const isAldreadyLogin = (token) => {
         });
       }
     } catch (err) {
-      console.log(err);
       dispatch({
         type: authConstant.AUTH_AXIOS_ERROR,
       });

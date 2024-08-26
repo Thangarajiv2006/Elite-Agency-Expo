@@ -77,7 +77,6 @@ export const getAllProducts = (start, end) => {
         });
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: productConstant.GET_ALL_PRODUCT_AXIOS_ERROR,
       });
@@ -106,7 +105,6 @@ export const refreshProducts = () => {
         });
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: productConstant.GET_ALL_PRODUCT_AXIOS_ERROR,
       });

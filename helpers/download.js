@@ -40,14 +40,12 @@ export const save = async (uri, filename, mimetype) => {
         permissions.directoryUri,
         filename,
         mimetype
-      )
-        .then(async (uri) => {
-          await FileSystem.writeAsStringAsync(uri, base64, {
-            encoding: FileSystem.EncodingType.Base64,
-          });
-          return permissions.directoryUri;
-        })
-        .catch((e) => console.log(e));
+      ).then(async (uri) => {
+        await FileSystem.writeAsStringAsync(uri, base64, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+        return permissions.directoryUri;
+      });
     } else {
       shareAsync(uri);
     }

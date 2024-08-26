@@ -35,7 +35,6 @@ const selectShop = () => {
   const [filterdData, setFilteredData] = useState(orderData.orders ?? []);
 
   useEffect(() => {
-    console.log(orderData);
     if (AgencyData.errorCode) {
       Alert.alert("Error", AgencyData.errorMessage);
     }

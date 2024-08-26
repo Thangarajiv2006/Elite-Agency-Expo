@@ -28,15 +28,12 @@ export const createOrder = (data, agencyData) => {
           payload: res.data,
         });
 
-        console.log(res.data);
-
         const html = billLayout(
           agencyData,
           res.data.shop,
           res.data.orderedProducts,
           res.data.invoiceNo
         );
-        console.log("hello");
         const file = await printToFileAsync({
           html: html,
           base64: false,
@@ -51,7 +48,6 @@ export const createOrder = (data, agencyData) => {
         });
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: orderConstant.CREATE_ORDER_AXIOS_ERROR,
       });
@@ -86,7 +82,6 @@ export const getOrders = (start, end) => {
         });
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: orderConstant.GET_ORDER_AXIOS_ERROR,
       });
@@ -115,7 +110,6 @@ export const refreshOrders = () => {
         });
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: orderConstant.GET_ORDER_AXIOS_ERROR,
       });

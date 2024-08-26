@@ -26,9 +26,7 @@ export const createShop = (formData) => {
           },
         });
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 };
 
@@ -57,7 +55,6 @@ export const fetchShops = (start, end) => {
         });
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: shopConstant.GET_SHOP_AXIOS_ERROR,
       });
@@ -84,7 +81,6 @@ export const refreshShops = () => {
         });
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: shopConstant.GET_SHOP_AXIOS_ERROR,
       });
