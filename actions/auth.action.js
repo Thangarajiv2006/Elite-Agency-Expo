@@ -51,6 +51,7 @@ export const isAldreadyLogin = (token) => {
         });
       }
     } catch (err) {
+      console.log(err);
       dispatch({
         type: authConstant.AUTH_AXIOS_ERROR,
       });

@@ -6,6 +6,7 @@ import {
   Alert,
   FlatList,
   RefreshControl,
+  Dimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../components/common/Header";
@@ -20,6 +21,10 @@ import { useDebounce } from "use-debounce";
 import { router } from "expo-router";
 import { getOrders, refreshOrders } from "../../actions/order.action";
 import RenderOrder from "../../components/Order/RenderOrder";
+
+import { billLayout } from "../../others/inovoicePdf";
+import { printToFileAsync } from "expo-print";
+import ShowOrderPdf from "../../components/Order/ShowOrderPdf";
 
 const selectShop = () => {
   const AgencyData = useSelector((state) => state.Agency);
@@ -55,7 +60,10 @@ const selectShop = () => {
       return;
     }
     const searchResults = orderData.orders.filter((item) => {
-      return item.shop.shopName.toLowerCase().includes(search.toLowerCase());
+      return (
+        item.shop.shopName.toLowerCase().includes(search.toLowerCase()) ||
+        item.invoiceNo.toLowerCase().includes(search.toLowerCase())
+      );
     });
     setFilteredData(searchResults);
   }, [debouncedSearchText, orderData]);
@@ -85,7 +93,11 @@ const selectShop = () => {
               data={filterdData ?? []}
               keyExtractor={(item) => item._id}
               renderItem={({ item, index }) => (
-                <RenderOrder index={index} item={item} onPress={() => {}} />
+                <RenderOrder
+                  index={index}
+                  item={item}
+                  onPress={() => router.push(`/order/showOrder/${item._id}`)}
+                />
               )}
               ListFooterComponent={() => <Loader loading={isFetching} />}
               onEndReached={
@@ -117,7 +129,6 @@ const selectShop = () => {
             handlePress={() => router.push("/order/selectShop")}
           />
         </View>
-        <View style={styles.scrollViewContent}></View>
 
         <StatusBar style="light" backgroundColor={color.background} />
       </View>

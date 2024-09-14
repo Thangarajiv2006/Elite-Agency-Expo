@@ -64,7 +64,8 @@ const FixedHeaderFooterExample = () => {
       (item) =>
         item.name.toLowerCase().includes(search.toLowerCase()) ||
         item.shopName.toLowerCase().includes(search.toLowerCase()) ||
-        item.address.village.toLowerCase().includes(search.toLowerCase())
+        item.address.village.toLowerCase().includes(search.toLowerCase()) ||
+        item.mobile.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredData(searchResults);
   }, [debouncedSearchText, shopData]);

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Elite Agency",
     "slug": "elite-agency",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait ",
     "icon": "./assets/images/appLogo.png",
     "scheme": "myapp",

@@ -2,30 +2,20 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   FlatList,
-  RefreshControl,
-  Dimensions,
-  Animated,
   useWindowDimensions,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { StatusBar } from "expo-status-bar";
 import { color } from "../../constants/colors";
 import Header from "../../components/common/Header";
 
 import RenderProduct from "../../components/common/RenderProduct";
-import * as Animatable from "react-native-animatable";
 import icons from "../../constants/icons";
-import { Image } from "react-native";
-import { backendUrls } from "../../constants/urlConfig";
-import CircleButton from "../../components/common/CircleButton";
-import FormField from "../../components/common/TextInput";
 import TypeOrder from "../../components/Order/TypeOrder";
-import CustomButton from "../../components/common/CustomButton";
 
 const getOrder = () => {
   const Dimensions = useWindowDimensions();

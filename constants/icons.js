@@ -13,6 +13,7 @@ import download from "../assets/icons/download.png";
 import backNav from "../assets/icons/backNav.png";
 import minus from "../assets/icons/minus.png";
 import signout from "../assets/icons/signout.png";
+import print from "../assets/icons/print.png";
 
 export default {
   analytics,
@@ -30,4 +31,5 @@ export default {
   backNav,
   minus,
   signout,
+  print,
 };

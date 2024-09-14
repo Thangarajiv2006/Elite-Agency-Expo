@@ -1,21 +1,30 @@
-import React from "react";
-import { View, ActivityIndicator } from "react-native";
-import { WebView } from "react-native-webview";
+import React, { useEffect, useState } from "react";
+import { View, ActivityIndicator, Text, Dimensions } from "react-native";
+import Pdf from "react-native-pdf";
+import { color } from "../../constants/colors";
 
 const PdfViewer = ({ uri }) => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, width: "100%", height: "100%" }}>
       {uri ? (
-        <WebView
+        <Pdf
           source={{ uri }}
-          style={{ flex: 1 }}
-          startInLoadingState={true}
-          renderLoading={() => (
-            <ActivityIndicator size="large" color="#0000ff" />
-          )}
+          onError={(error) => {
+            console.log(error);
+          }}
+          style={{
+            flex: 1,
+            width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height,
+            backgroundColor: color.background,
+          }}
         />
       ) : (
-        <ActivityIndicator size="large" color="#0000ff" style={{ flex: 1 }} />
+        <ActivityIndicator
+          size="large"
+          color={color.background}
+          style={{ flex: 1 }}
+        />
       )}
     </View>
   );

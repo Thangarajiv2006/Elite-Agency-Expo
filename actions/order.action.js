@@ -44,7 +44,7 @@ export const createOrder = (data, agencyData) => {
           `${res.data.shop.shopName}${Date.now()}`,
           "application/pdf"
         ).then(() => {
-          router.push(`/orders`);
+          router.replace(`/order/showOrder/${res.data._id}`);
           Alert.alert("Message", "PDF Created Successfully!");
         });
       }

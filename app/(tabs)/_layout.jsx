@@ -98,7 +98,7 @@ const TabLayout = () => {
           ),
         }}
       />
-      <Tabs.Screen
+      {/*  <Tabs.Screen
         name="workers"
         options={{
           title: "Workers",
@@ -111,7 +111,7 @@ const TabLayout = () => {
             />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="orders"
         options={{

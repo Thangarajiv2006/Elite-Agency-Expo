@@ -2,8 +2,10 @@
 
 import Analyse from "../assets/images/index.png";
 import Buisness from "../assets/images/buisness.jpg";
+import shop from "../assets/images/shop.png";
 
 export const images = {
   Analyse,
   Buisness,
+  shop,
 };

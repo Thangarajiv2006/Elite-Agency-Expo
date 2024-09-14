@@ -50,7 +50,7 @@ const RenderOrder = ({ index, item, onPress }) => {
     setGrandTotal(grandTotalAmount);
   }, []);
 
-  const handleGenaratePdf = async (
+  const generateBill = async (
     agencyDetails,
     shop,
     products,
@@ -68,6 +68,24 @@ const RenderOrder = ({ index, item, onPress }) => {
       html: html,
       base64: false,
     });
+
+    return file;
+  };
+
+  const downloadPdf = async (
+    agencyDetails,
+    shop,
+    products,
+    invoiceNo,
+    createdAt
+  ) => {
+    const file = await generateBill(
+      agencyDetails,
+      shop,
+      products,
+      invoiceNo,
+      createdAt
+    );
     await save(
       file.uri,
       `${shop.shopName}${Date.now()}`,
@@ -78,7 +96,9 @@ const RenderOrder = ({ index, item, onPress }) => {
   };
 
   return (
-    <View
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={onPress}
       style={{
         backgroundColor: color.surface,
         width: "100%",
@@ -92,29 +112,6 @@ const RenderOrder = ({ index, item, onPress }) => {
         position: "relative",
       }}
     >
-      <CircleButton
-        icon={icons.download}
-        containerStyle={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-          width: 35,
-          height: 35,
-          opacity: isDownloading ? 0.7 : 1,
-        }}
-        buttonStyle={{
-          width: 15,
-        }}
-        handlePress={() =>
-          handleGenaratePdf(
-            AgencyData.agencyDetails,
-            item.shop,
-            item.orderedProducts,
-            item.invoiceNo,
-            item.createdAt
-          )
-        }
-      />
       <View
         style={{
           width: 100,
@@ -150,29 +147,41 @@ const RenderOrder = ({ index, item, onPress }) => {
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              width: 175,
+              width: "100%",
               marginTop: 2,
             }}
           >
+            <View>
+              <Text
+                style={{
+                  color: color.onSurface,
+                  fontFamily: "Poppins-Medium",
+                  fontSize: 12,
+                  opacity: 0.7,
+                }}
+              >
+                {item.shop.name}
+              </Text>
+              <Text
+                style={{
+                  color: color.onSurface,
+                  fontFamily: "Poppins-Medium",
+                  opacity: 0.7,
+                  fontSize: 12,
+                }}
+              >
+                {formattedDate}
+              </Text>
+            </View>
             <Text
               style={{
                 color: color.onSurface,
                 fontFamily: "Poppins-Medium",
-                fontSize: 12,
-                opacity: 0.7,
-              }}
-            >
-              {item.shop.name}
-            </Text>
-            <Text
-              style={{
-                color: color.onSurface,
-                fontFamily: "Poppins-Medium",
                 opacity: 0.7,
                 fontSize: 12,
               }}
             >
-              {formattedDate}
+              {item.invoiceNo}
             </Text>
           </View>
         </View>
@@ -203,7 +212,7 @@ const RenderOrder = ({ index, item, onPress }) => {
           </Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
